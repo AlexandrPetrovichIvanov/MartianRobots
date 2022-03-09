@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using MartianRobots.Mars.Robots;
 
 namespace MartianRobots.Mars.Terrain
 {
@@ -12,7 +13,7 @@ namespace MartianRobots.Mars.Terrain
 
         private const int _minimumY = 0;
 
-        private readonly HashSet<Coordinates> _scents = new HashSet<Coordinates>();
+        private readonly HashSet<RobotPosition> _scents = new HashSet<RobotPosition>();
 
         internal TerrainGrid(int maximumX, int maximumY)
         {
@@ -24,10 +25,10 @@ namespace MartianRobots.Mars.Terrain
             => position.X <= _maximumX && position.X >= _minimumX
                 && position.Y <= _maximumY && position.Y >= _minimumY;
 
-        public bool PositionHasScent(Coordinates position)
+        public bool PositionHasScent(RobotPosition position)
             => _scents.Contains(position);
 
-        public void LeaveScent(Coordinates position)
+        public void LeaveScent(RobotPosition position)
         {
             if (!_scents.Contains(position)) _scents.Add(position);
         }

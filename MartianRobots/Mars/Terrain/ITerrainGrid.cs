@@ -4,10 +4,10 @@ namespace MartianRobots.Mars.Terrain
 {
     internal interface ITerrainGrid
     {
-        bool PositionHasScent(Coordinates position);
+        bool PositionHasScent(RobotPosition position);
 
         bool IsReachableFromTheBase(Coordinates position);
 
-        void LeaveScent(Coordinates position);
+        void LeaveScent(RobotPosition position);
     }
 }
