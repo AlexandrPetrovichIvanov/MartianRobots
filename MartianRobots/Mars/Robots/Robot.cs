@@ -43,7 +43,7 @@ namespace MartianRobots.Mars.Robots
 
         public void MoveForward()
         {
-            if (_grid.PositionHasScent(_position.Coordinates))
+            if (_grid.PositionHasScent(_position))
                 return; // ignore a dangerous command
 
             var nextSupposedCoordinates = CurrengMovementStrategy
@@ -60,7 +60,7 @@ namespace MartianRobots.Mars.Robots
 
             if (!_grid.IsReachableFromTheBase(_position.Coordinates))
             {
-                _grid.LeaveScent(_previousPosition.Coordinates);
+                _grid.LeaveScent(_previousPosition);
             }
         }
 

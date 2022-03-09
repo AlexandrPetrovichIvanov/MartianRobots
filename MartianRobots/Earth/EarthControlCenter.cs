@@ -37,16 +37,18 @@ namespace MartianRobots.Earth
         {
             var lines = instructions.Split(Environment.NewLine);
 
-            var coordinates = lines[0].Split(" ").Select(str => int.Parse(str)).ToArray();
-            var grid = new TerrainGrid(coordinates[0], coordinates[1]);
+            var gridCoordinates = lines[0].Split(" ", StringSplitOptions.RemoveEmptyEntries)
+                .Select(str => int.Parse(str)).ToArray();
+            var grid = new TerrainGrid(gridCoordinates[0], gridCoordinates[1]);
 
             var output = string.Empty;
 
             for (int i = 1; i < lines.Length; i += 2)
             {
                 var robot = CreateRobot(grid, lines[i]);
-                MoveRobot(robot, lines[i + 1]);
-                output += ComposeOutputResult(robot) + Environment.NewLine;
+                MoveRobot(robot, grid, lines[i + 1].Trim());
+                output += ComposeOutputResult(robot, grid);
+                if (i < lines.Length - 2) output+= Environment.NewLine;
             }
 
             return output;
@@ -54,7 +56,7 @@ namespace MartianRobots.Earth
 
         private IRobot CreateRobot(ITerrainGrid grid, string initialPositionString)
         {
-            var initialPosition = initialPositionString.Split(" ");
+            var initialPosition = initialPositionString.Split(" ", StringSplitOptions.RemoveEmptyEntries);
 
             return new Robot(grid, new RobotPosition
             {
@@ -68,22 +70,25 @@ namespace MartianRobots.Earth
             _movementStrategies);
         }
 
-        private void MoveRobot(IRobot robot, string movementInstructions)
+        private void MoveRobot(IRobot robot, ITerrainGrid grid, string movementInstructions)
         {
             for (int i = 0; i < movementInstructions.Length; i++)
             {
-                _commands[movementInstructions[i]].Execute(robot);
+                if (grid.IsReachableFromTheBase(robot.CurrentPosition.Coordinates))
+                {
+                    _commands[movementInstructions[i]].Execute(robot);
+                }
             }
         }
 
-        private string ComposeOutputResult(IRobot robot)
+        private string ComposeOutputResult(IRobot robot, ITerrainGrid grid)
         {
             var output = robot.LastReachablePosition.Coordinates.X
                 + " " + robot.LastReachablePosition.Coordinates.Y
                 + " " + _directions.Single(d => d.Value == robot.CurrentPosition.Direction).Key;
 
-            if (robot.CurrentPosition.Equals(robot.LastReachablePosition))
-                output += "LOST";
+            if (!robot.CurrentPosition.Equals(robot.LastReachablePosition))
+                output += " LOST";
 
             return output;
         }
