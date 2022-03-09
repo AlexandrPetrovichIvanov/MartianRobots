@@ -1,1 +1,4 @@
 /MartianRobots/obj/*.*
+/MartianRobots/obj/Debug/net5.0/*.*
+/.vscode/launch.json
+/.vscode/tasks.json

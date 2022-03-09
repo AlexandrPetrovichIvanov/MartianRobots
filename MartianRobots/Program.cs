@@ -1,4 +1,5 @@
 ﻿using System;
+using MartianRobots.Tests.Framework;
 
 namespace MartianRobots
 {
@@ -6,7 +7,7 @@ namespace MartianRobots
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            TestsRunner.RunAll();
         }
     }
 }
