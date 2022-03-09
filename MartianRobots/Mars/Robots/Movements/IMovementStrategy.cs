@@ -6,7 +6,7 @@ namespace MartianRobots.Mars.Robots.Movements
     {
         RobotDirection DirectionBeforeMovement { get; }
 
-        Coordinates CalculateForwardEndCoordinates(Coordinates currentCoordinates, int howManySquares);
+        Coordinates CalculateForwardEndCoordinates(Coordinates currentCoordinates);
 
         RobotDirection GetDirectionIfTurnsLeft();
 

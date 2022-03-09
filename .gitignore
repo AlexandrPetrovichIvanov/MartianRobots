@@ -4,3 +4,4 @@
 /.vscode/tasks.json
 /MartianRobots/bin/Debug/net5.0/*.*
 /MartianRobots/bin/Debug/net5.0/ref/*.*
+/MartianRobots/obj/Debug/net5.0/ref/*.*

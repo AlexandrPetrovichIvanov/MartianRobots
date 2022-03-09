@@ -1,5 +1,4 @@
-﻿using System;
-using MartianRobots.Tests.Framework;
+﻿using MartianRobots.Tests.Framework;
 
 namespace MartianRobots
 {

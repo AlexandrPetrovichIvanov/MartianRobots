@@ -12,6 +12,8 @@ namespace MartianRobots.Mars.Robots
 
         private readonly IEnumerable<IMovementStrategy> _movementStrategies;
 
+        private RobotPosition _previousPosition;
+
         private RobotPosition _position;
 
         internal Robot(
@@ -24,35 +26,41 @@ namespace MartianRobots.Mars.Robots
                 
             _grid = gridToLocate;
             _position = initialPosition;
+            _previousPosition = initialPosition; // the same position
             _movementStrategies = movementStrategies;
         }
 
         public RobotPosition CurrentPosition => _position;
 
+        public RobotPosition LastReachablePosition =>
+            _grid.IsReachableFromTheBase(_position.Coordinates)
+                ? _position
+                : _previousPosition;
+
         private IMovementStrategy CurrengMovementStrategy =>
             _movementStrategies.Single(strategy
                 => strategy.DirectionBeforeMovement == _position.Direction);
 
-        public void MoveForward(int howManySquaresForward)
+        public void MoveForward()
         {
             if (_grid.PositionHasScent(_position.Coordinates))
                 return; // ignore a dangerous command
 
             var nextSupposedCoordinates = CurrengMovementStrategy
-                .CalculateForwardEndCoordinates(_position.Coordinates, howManySquaresForward);
+                .CalculateForwardEndCoordinates(_position.Coordinates);
 
-            var previousPosition = _position;
+            _previousPosition = _position;
 
             // move
             _position = new RobotPosition
             {
                 Coordinates = nextSupposedCoordinates,
-                Direction = previousPosition.Direction
+                Direction = _previousPosition.Direction
             };
 
             if (!_grid.IsReachableFromTheBase(_position.Coordinates))
             {
-                _grid.LeaveScent(previousPosition.Coordinates);
+                _grid.LeaveScent(_previousPosition.Coordinates);
             }
         }
 

@@ -6,8 +6,10 @@ namespace MartianRobots.Mars.Robots
 
         void TurnRight();
 
-        void MoveForward(int howManySquaresForward);
+        void MoveForward();
 
         RobotPosition CurrentPosition { get; }
+
+        RobotPosition LastReachablePosition { get; }
     }
 }

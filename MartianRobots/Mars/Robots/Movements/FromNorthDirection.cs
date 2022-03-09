@@ -6,11 +6,11 @@ namespace MartianRobots.Mars.Robots.Movements
     {
         public RobotDirection DirectionBeforeMovement => RobotDirection.North;
 
-        public Coordinates CalculateForwardEndCoordinates(Coordinates currentCoordinates, int howManySquares)
+        public Coordinates CalculateForwardEndCoordinates(Coordinates currentCoordinates)
             => new Coordinates
             {
                 X = currentCoordinates.X,
-                Y = currentCoordinates.Y + howManySquares
+                Y = currentCoordinates.Y + 1
             };
 
         public RobotDirection GetDirectionIfTurnsLeft() => RobotDirection.West;
