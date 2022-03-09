@@ -7,5 +7,7 @@ namespace MartianRobots.Mars.Terrain
         bool PositionHasScent(Coordinates position);
 
         bool IsReachableFromTheBase(Coordinates position);
+
+        void LeaveScent(Coordinates position);
     }
 }

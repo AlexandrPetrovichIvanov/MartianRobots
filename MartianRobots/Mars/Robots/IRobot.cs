@@ -7,5 +7,7 @@ namespace MartianRobots.Mars.Robots
         void TurnRight();
 
         void MoveForward(int howManySquaresForward);
+
+        RobotPosition CurrentPosition { get; }
     }
 }
