@@ -26,19 +26,19 @@ To run the test here is used a custom-written tests framework.
 
 
 # Initial time estimation
-30min - planning and designing. Making some assumptions
-20min - setting up GitHub
-1h - making the scaffolds (interfaces, classes without implementation, testing framework)
-1h - implementation
-1h - functional tests, debugging
-30m - composing Readme, sending the result to the company
-30m - reserve
+- 30min - planning and designing. Making some assumptions
+- 20min - setting up GitHub
+- 1h - making the scaffolds (interfaces, classes without implementation, testing framework)
+- 1h - implementation
+- 1h - functional tests, debugging
+- 30m - composing Readme, sending the result to the company
+- 30m - reserve
 
 
 # Actual time spent
-30min - planning and designing. Making some assumptions
-15min - setting up GitHub
-1.5h - making the scaffolds (interfaces, classes without implementation, testing framework)
-2h - implementation
-30m - functional test (only one), debugging
-45m - composing Readme, sending the result to the company
+- 30min - planning and designing. Making some assumptions
+- 15min - setting up GitHub
+- 1.5h - making the scaffolds (interfaces, classes without implementation, testing framework)
+- 2h - implementation
+- 30m - functional test (only one), debugging
+- 45m - composing Readme, sending the result to the company
